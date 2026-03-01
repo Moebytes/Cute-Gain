@@ -22,8 +22,6 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(juce)
 
 juce_add_plugin(${PROJECT_NAME}
-    #ICON_BIG "${CMAKE_CURRENT_SOURCE_DIR}/assets/icon_big.ico"
-    #ICON_SMALL "${CMAKE_CURRENT_SOURCE_DIR}/assets/icon_small.ico"
     COMPANY_NAME Moebytes
     IS_SYNTH FALSE
     NEEDS_MIDI_INPUT FALSE
@@ -35,26 +33,10 @@ juce_add_plugin(${PROJECT_NAME}
     PLUGIN_CODE Gain
     FORMATS VST3 AU Standalone
     PRODUCT_NAME "Gain Booster"
+    ICON_BIG "assets/icon.png"
     NEEDS_WEB_BROWSER TRUE
     NEEDS_WEBVIEW2 TRUE
 )
-
-if (APPLE)
-    set(MACOSX_BUNDLE_ICON_FILE "icon_big.icns")
-    set_source_files_properties(${CMAKE_CURRENT_SOURCE_DIR}/assets/icon_big.icns PROPERTIES
-        MACOSX_PACKAGE_LOCATION "Resources")
-    
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        MACOSX_BUNDLE TRUE
-        MACOSX_BUNDLE_ICON_FILE ${MACOSX_BUNDLE_ICON_FILE}
-    )
-
-    target_sources(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/assets/icon_big.icns)
-endif()
-
-if (WIN32)
-    target_sources(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/assets/icon.rc)
-endif()
 
 juce_generate_juce_header(${PROJECT_NAME})
 
