@@ -10,13 +10,13 @@ import functions from "./structures/Functions"
 import "./index.scss"
 
 const darkColorList = {
-    "--background": "#0d0d0d",
+    "--background": "#160e16",
     "--text": "white",
     "--border": "black"
 }
 
 const lightColorList = {
-    "--background": "white",
+    "--background": "#ffd7fb",
     "--text": "black",
     "--border": "white"
 }
@@ -39,13 +39,13 @@ const App: React.FunctionComponent = () => {
         setTheme((prev) => prev === "light" ? "dark" : "light")
     }
 
-    const filter = functions.calculateFilter("#ff0db2")
+    const filter = functions.calculateFilter("#ff8fdf")
 
     return (
         <div className="app">
             <ThemeContext.Provider value={{theme, setTheme}}>
             <div className="title-container">
-                <span className="title-text">Gain <span className="title-highlight">Booster</span></span>
+                <span className="title-text">Cute <span className="title-highlight">Gain</span></span>
                 <img className="theme-icon" src={theme === "light" ? dark : light} style={{filter}}onClick={toggleTheme} draggable={false}/>
             </div>
             <div className="knobs-container">
@@ -53,14 +53,14 @@ const App: React.FunctionComponent = () => {
                     label={parameters.gain.id.toUpperCase()} 
                     parameterID={parameters.gain.id} 
                     mapOptionID={parameters.gainCurve.id}
-                    color="#ff0db2" 
+                    color="#ff8fdf" 
                     display="percent" 
                     mappingOptions={["logarithmic", "linear", "exponential"]}/>
                 <Knob 
                     label={parameters.boost.id.toUpperCase()} 
                     parameterID={parameters.boost.id} 
                     mapOptionID={parameters.boostCurve.id}
-                    color="#227eff" 
+                    color="#8bc5ff" 
                     display="decibels" 
                     style={{marginLeft: "10px"}} 
                     mappingOptions={["logarithmic", "linear", "exponential"]}/>
@@ -68,7 +68,7 @@ const App: React.FunctionComponent = () => {
                     label={parameters.pan.id.toUpperCase()} 
                     parameterID={parameters.pan.id} 
                     mapOptionID={parameters.panningLaw.id}
-                    color="#460dff" 
+                    color="#a683ff" 
                     display="pan" 
                     mappingOptions={["constant", "triangle", "linear"]}/>
             </div>
@@ -78,13 +78,13 @@ const App: React.FunctionComponent = () => {
                     lfoTypeID={parameters.gainLFOType.id} 
                     lfoRateID={parameters.gainLFORate.id} 
                     lfoAmountID={parameters.gainLFOAmount.id} 
-                    color="#ff0db2"/>
+                    color="#ff8fdf"/>
                 <LFOBar 
                     label={parameters.pan.id.toUpperCase()} 
                     lfoTypeID={parameters.panLFOType.id} 
                     lfoRateID={parameters.panLFORate.id} 
                     lfoAmountID={parameters.panLFOAmount.id}  
-                    color="#460dff"/>
+                    color="#a683ff"/>
             </div>
             <div className="preset-container">
                 <PresetBar/>

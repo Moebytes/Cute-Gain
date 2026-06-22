@@ -1,6 +1,6 @@
-# Gain Booster
+# Cute Gain
 
-Gain Booster is a VST/AU plugin for gain control, panning, and some LFO modulation.
+Cute Gain is a VST/AU plugin for gain control, panning, and some LFO modulation.
 
 <img src="assets/readme.png" height="600">
 
@@ -20,15 +20,19 @@ Gain Booster is a VST/AU plugin for gain control, panning, and some LFO modulati
 
 That should be it!
 
+### Design
+
+Our design is available here: https://www.figma.com/design/B2ZkSdjkJbhSAynBWiNesK/Cute-Gain
+
 ### Installation
 
-Download from the [releases](https://github.com/Moebytes/Gain-Booster/releases) tab and rescan the plugins in your DAW.
+Download from the [releases](https://github.com/Moebytes/Cute-Gain/releases) tab and rescan the plugins in your DAW.
 
 ### MacOS
 
 On MacOS you need to remove the unsigned app check.
 ```
-xattr -d com.apple.quarantine "/Library/Audio/Plug-Ins/VST3/Gain Booster.vst3"
+xattr -d com.apple.quarantine "/Library/Audio/Plug-Ins/VST3/Cute Gain.vst3"
 ```
 
 ### Building

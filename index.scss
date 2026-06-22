@@ -1,4 +1,9 @@
 @font-face {
+    font-family: "BestTen-CRT";
+    src: url("./assets/BestTen-CRT.otf") format("opentype");
+}
+
+@font-face {
     font-family: "MaruMinya";
     src: url("./assets/MaruMinya.ttf") format("truetype");
 }
@@ -9,16 +14,16 @@
 }
 
 :root {
-    --background: #0d0d0d;
+    --background: #160e16;
     --border: black;
     --text: white;
-    --pink: #ff0db2;
-    --blue: #227eff;
-    --purple: #460dff;
+    --pink: #ff8fdf;
+    --blue: #8bc5ff;
+    --purple: #a683ff;
 }
 
 .light {
-    --background: white;
+    --background: #ffd7fb;
     --text: black;
     --border: white;
 }
@@ -77,7 +82,7 @@ body {
 
 .title-text {
     color: var(--text);
-    font-family: Nagino, sans-serif;
+    font-family: "BestTen-CRT", sans-serif;
     font-weight: bold;
     letter-spacing: 0.12rem;
     font-size: 2.8rem;

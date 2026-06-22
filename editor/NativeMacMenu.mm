@@ -1,4 +1,5 @@
 #import <Cocoa/Cocoa.h>
+#import <string>
 #import "NativeMenuBridge.h"
 
 static std::function<void(int)> endCallback = nullptr;

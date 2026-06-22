@@ -253,7 +253,7 @@ auto Parameters::update() noexcept -> void {
 
     float panLFOValue = this->panLFO.getSample();
     float panLFOAmount = this->panLFOAmountSmoother.getNextValue();
-    this->pan = jlimit(-1.0f, 1.0f, this->pan + panLFOValue * panLFOAmount * 0.5f);
+    this->pan = jlimit(-1.0f, 1.0f, this->pan + panLFOValue * panLFOAmount);
 
     if (panningLaw == "triangle") {
         PanningLaw::trianglePanning(this->pan, this->panL, this->panR);

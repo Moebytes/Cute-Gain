@@ -12,7 +12,7 @@ jobs:
     runs-on: ${{matrix.os}}
 
     env:
-      PLUGIN_NAME: GainBooster
+      PLUGIN_NAME: CuteGain
 
     strategy:
       fail-fast: false

@@ -40,11 +40,9 @@ public:
         this->bpm = bpm;
         this->timeSignature = timeSignature;
 
-        if (this->retrigger) {
-            double position = std::fmod(ppq, this->syncedBeats);
-            if (position < (1.0 / this->sampleRate)) {
-                this->phase = 0.0f;
-            }
+        if (syncedBeats > 0.0f) {
+            double positionInCycle = std::fmod(ppq, syncedBeats);
+            this->phase = static_cast<float>(positionInCycle / syncedBeats);
         }
     }
 
@@ -83,7 +81,5 @@ private:
     float syncedBeats = 1.0f;
     float increment = 0.0f;
     float phase = 0.0f;
-
-    bool retrigger = false;
     bool phaseInvert = true;
 };

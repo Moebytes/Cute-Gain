@@ -4,7 +4,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-project(GainBooster VERSION 0.0.6)
+project(CuteGain VERSION 0.0.6)
 
 option(WEBVIEW_DEV_MODE "Enable webview dev mode (load from disk)" OFF)
 
@@ -32,7 +32,7 @@ juce_add_plugin(${PROJECT_NAME}
     PLUGIN_MANUFACTURER_CODE Mbit
     PLUGIN_CODE Gain
     FORMATS VST3 AU Standalone
-    PRODUCT_NAME "Gain Booster"
+    PRODUCT_NAME "Cute Gain"
     ICON_BIG "assets/icon.png"
     NEEDS_WEB_BROWSER TRUE
     NEEDS_WEBVIEW2 TRUE
