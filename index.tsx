@@ -78,13 +78,17 @@ const App: React.FunctionComponent = () => {
                     lfoTypeID={parameters.gainLFOType.id} 
                     lfoRateID={parameters.gainLFORate.id} 
                     lfoAmountID={parameters.gainLFOAmount.id} 
-                    color="#ff8fdf"/>
+                    lfoInvertID={parameters.gainLFOInvert.id}
+                    color="#ff8fdf"
+                    theme={theme}/>
                 <LFOBar 
                     label={parameters.pan.id.toUpperCase()} 
                     lfoTypeID={parameters.panLFOType.id} 
                     lfoRateID={parameters.panLFORate.id} 
                     lfoAmountID={parameters.panLFOAmount.id}  
-                    color="#a683ff"/>
+                    lfoInvertID={parameters.panLFOInvert.id}
+                    color="#a683ff"
+                    theme={theme}/>
             </div>
             <div className="preset-container">
                 <PresetBar/>

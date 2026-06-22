@@ -42,6 +42,8 @@ private:
     WebSliderParameterAttachment gainLFORateAttachment {*this->processor.parameters.gainLFORateParam, gainLFORateRelay, nullptr};
     WebSliderRelay gainLFOAmountRelay {Parameters::paramIDs.gainLFOAmount.getParamID()};
     WebSliderParameterAttachment gainLFOAmountAttachment {*this->processor.parameters.gainLFOAmountParam, gainLFOAmountRelay, nullptr};
+    WebToggleButtonRelay gainLFOInvertRelay {Parameters::paramIDs.gainLFOInvert.getParamID()};
+    WebToggleButtonParameterAttachment gainLFOInvertAttachment {*this->processor.parameters.gainLFOInvertParam, gainLFOInvertRelay, nullptr};
     
     WebComboBoxRelay panLFOTypeRelay {Parameters::paramIDs.panLFOType.getParamID()};
     WebComboBoxParameterAttachment panLFOTypeAttachment {*this->processor.parameters.panLFOTypeParam, panLFOTypeRelay, nullptr};
@@ -49,6 +51,8 @@ private:
     WebSliderParameterAttachment panLFORateAttachment {*this->processor.parameters.panLFORateParam, panLFORateRelay, nullptr};
     WebSliderRelay panLFOAmountRelay {Parameters::paramIDs.panLFOAmount.getParamID()};
     WebSliderParameterAttachment panLFOAmountAttachment {*this->processor.parameters.panLFOAmountParam, panLFOAmountRelay, nullptr};
+    WebToggleButtonRelay panLFOInvertRelay {Parameters::paramIDs.panLFOInvert.getParamID()};
+    WebToggleButtonParameterAttachment panLFOInvertAttachment {*this->processor.parameters.panLFOInvertParam, panLFOInvertRelay, nullptr};
 
     WebBrowserComponent webview;
 

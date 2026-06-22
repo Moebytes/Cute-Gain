@@ -50,9 +50,11 @@ auto Editor::webviewOptions() -> WebBrowserComponent::Options {
     .withOptionsFrom(gainLFOTypeRelay)
     .withOptionsFrom(gainLFORateRelay)
     .withOptionsFrom(gainLFOAmountRelay)
+    .withOptionsFrom(gainLFOInvertRelay)
     .withOptionsFrom(panLFOTypeRelay)
     .withOptionsFrom(panLFORateRelay)
     .withOptionsFrom(panLFOAmountRelay)
+    .withOptionsFrom(panLFOInvertRelay)
     .withNativeFunction("getDefaultParameter", [this](auto args, auto completion){ 
         return this->processor.parameters.getDefaultParameter(args, completion); 
     })

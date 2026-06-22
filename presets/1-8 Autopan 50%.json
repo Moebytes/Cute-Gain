@@ -1,6 +1,6 @@
 {
   "plugin": "Cute Gain",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "name": "1/8 Autopan 50%",
   "author": "Moebytes",
   "modified": "2025-09-16T15:21:59.931-04:00",
@@ -15,8 +15,10 @@
     "gainLFOType": "square",
     "gainLFORate": "1/8",
     "gainLFOAmount": "0%",
+    "gainLFOInvert": "Off",
     "panLFOType": "square",
     "panLFORate": "1/8",
-    "panLFOAmount": "50%"
+    "panLFOAmount": "50%",
+    "panLFOInvert": "Off"
   }
 }

@@ -2,6 +2,7 @@ import React, {useState, useRef, useEffect, useContext} from "react"
 import {ThemeContext} from "../index"
 import withJuceSlider, {WithJUCESliderProps} from "./withJuceSlider"
 import withJuceComboBox, {WithJUCEComboBoxProps} from "./withJuceComboBox"
+import withJuceToggleButton, {WithJUCEToggleButtonProps} from "./withJuceToggleButton"
 import MiniKnob from "./MiniKnob"
 import functions from "../structures/Functions"
 import squareWave from "../assets/square-wave.png"
@@ -9,6 +10,7 @@ import sineWave from "../assets/sine-wave.png"
 import sawWave from "../assets/saw-wave.png"
 import triangleWave from "../assets/triangle-wave.png"
 import musicNote from "../assets/music-note.png"
+import flipArrow from "../assets/flip-arrow.png"
 import "./styles/lfobar.scss"
 
 interface LFOTypeProps {
@@ -151,24 +153,43 @@ const LFOBarRate: React.FunctionComponent<LFORateProps & WithJUCESliderProps> = 
     )
 }
 
+interface LFOInvertProps {
+    parameterID: string
+    color: string
+    theme: string
+}
+
+const LFOBarInvert: React.FunctionComponent<LFOInvertProps & WithJUCEToggleButtonProps> = ({color, theme, value, onChange}) => {
+    let onFilter = theme === "dark" ? "invert(1)" : "invert(0)"
+    const filter = value ? onFilter : functions.calculateFilter(color)
+
+    return (
+        <img className="lfobar-arrow-icon" src={flipArrow} style={{filter}} draggable={false} onClick={() => onChange(!value)}/>
+    )
+}
+
 interface Props {
     lfoTypeID: string
     lfoRateID: string
     lfoAmountID: string
+    lfoInvertID: string
     label: string
     color: string
+    theme: string
     style?: React.CSSProperties
 }
 
 const LFOBarTypeCombo = withJuceComboBox(LFOBarType)
 const LFOBarRateSlider = withJuceSlider(LFOBarRate)
+const LFOBarInvertButton = withJuceToggleButton(LFOBarInvert)
 
-const LFOBar: React.FunctionComponent<Props> = ({lfoTypeID, lfoRateID, lfoAmountID, label, color}) => {
+const LFOBar: React.FunctionComponent<Props> = ({lfoTypeID, lfoRateID, lfoAmountID, lfoInvertID, label, color, theme}) => {
     return (
         <div className="lfobar-container">
             <LFOBarTypeCombo parameterID={lfoTypeID} color={color} label={label}/>
             <LFOBarRateSlider parameterID={lfoRateID} color={color}/>
             <MiniKnob parameterID={lfoAmountID} color={color} label={label}/>
+            <LFOBarInvertButton parameterID={lfoInvertID} color={color} theme={theme}/>
         </div>
     )    
 }

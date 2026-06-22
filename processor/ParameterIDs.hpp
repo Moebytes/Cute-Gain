@@ -13,9 +13,11 @@ public:
     ParameterID gainLFOType;
     ParameterID gainLFORate;
     ParameterID gainLFOAmount;
+    ParameterID gainLFOInvert;
     ParameterID panLFOType;
     ParameterID panLFORate;
     ParameterID panLFOAmount;
+    ParameterID panLFOInvert;
 
     static inline var parsedJSON;
 
@@ -53,9 +55,11 @@ public:
         parameterIDs.gainLFOType = getParameter("gainLFOType");
         parameterIDs.gainLFORate = getParameter("gainLFORate");
         parameterIDs.gainLFOAmount = getParameter("gainLFOAmount");
+        parameterIDs.gainLFOInvert = getParameter("gainLFOInvert");
         parameterIDs.panLFOType = getParameter("panLFOType");
         parameterIDs.panLFORate = getParameter("panLFORate");
         parameterIDs.panLFOAmount = getParameter("panLFOAmount");
+        parameterIDs.panLFOInvert = getParameter("panLFOInvert");
 
         return parameterIDs;
     }

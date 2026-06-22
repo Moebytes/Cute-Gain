@@ -42,10 +42,12 @@ public:
     AudioParameterChoice* gainLFOTypeParam;
     AudioParameterFloat* gainLFORateParam;
     AudioParameterFloat*  gainLFOAmountParam;
+    AudioParameterBool*  gainLFOInvertParam;
 
     AudioParameterChoice* panLFOTypeParam;
     AudioParameterFloat* panLFORateParam;
     AudioParameterFloat*  panLFOAmountParam;
+    AudioParameterBool*  panLFOInvertParam;
 
 private:
     AudioProcessorValueTreeState& tree;

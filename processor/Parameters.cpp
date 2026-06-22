@@ -18,6 +18,13 @@ static auto resetParameter(const AudioProcessorValueTreeState& tree,
 
 template <typename T>
 static auto resetParameter(const AudioProcessorValueTreeState& tree, 
+    const AudioParameterBool* param, T*& dest) -> void {
+    auto* paramObj = tree.getParameter(param->getParameterID());
+    if (paramObj) *dest = paramObj->getDefaultValue();
+}
+
+template <typename T>
+static auto resetParameter(const AudioProcessorValueTreeState& tree, 
     const AudioParameterChoice* param, T*& dest) -> void {
     auto* paramObj = tree.getParameter(param->getParameterID());
     if (paramObj) *dest = static_cast<T>(paramObj->getDefaultValue());
@@ -27,6 +34,7 @@ ParameterIDs Parameters::paramIDs = ParameterIDs::loadFromJSON();
 
 Parameters::Parameters(AudioProcessorValueTreeState& tree) : tree(tree) {
     using FloatPair = std::pair<AudioParameterFloat*&, const ParameterID*>;
+    using BoolPair = std::pair<AudioParameterBool*&, const ParameterID*>;
     using ChoicePair = std::pair<AudioParameterChoice*&, const ParameterID*>;
 
     auto floatParameters = std::vector<FloatPair>{
@@ -39,6 +47,11 @@ Parameters::Parameters(AudioProcessorValueTreeState& tree) : tree(tree) {
         {panLFOAmountParam, &paramIDs.panLFOAmount}
     };
 
+    auto boolParameters = std::vector<BoolPair>{
+        {gainLFOInvertParam, &paramIDs.gainLFOInvert},
+        {panLFOInvertParam, &paramIDs.panLFOInvert},
+    };
+
     auto choiceParameters = std::vector<ChoicePair>{
         {gainCurveParam, &paramIDs.gainCurve},
         {boostCurveParam, &paramIDs.boostCurve},
@@ -48,6 +61,10 @@ Parameters::Parameters(AudioProcessorValueTreeState& tree) : tree(tree) {
     };
 
     for (auto& [param, paramID] : floatParameters) {
+        castParameter(tree, paramID, param);
+    }
+
+    for (auto& [param, paramID] : boolParameters) {
         castParameter(tree, paramID, param);
     }
 
@@ -105,6 +122,10 @@ auto Parameters::createParameterLayout() -> AudioProcessorValueTreeState::Parame
         .withValueFromStringFunction(Functions::parsePercent)
     ));
 
+    layout.add(std::make_unique<AudioParameterBool>(
+        paramIDs.gainLFOInvert, "Gain LFO Invert", false
+    ));
+
     layout.add(std::make_unique<AudioParameterChoice>(
         paramIDs.panLFOType, "Pan LFO Type", StringArray{"square", "saw", "triangle", "sine"}, 0
     ));
@@ -119,6 +140,10 @@ auto Parameters::createParameterLayout() -> AudioProcessorValueTreeState::Parame
         paramIDs.panLFOAmount, "Pan LFO Amount", NormalisableRange<float>{0.0f, 1.0f, 0.01f}, 0.0f,
         AudioParameterFloatAttributes().withStringFromValueFunction(Functions::displayPercent)
         .withValueFromStringFunction(Functions::parsePercent)
+    ));
+
+    layout.add(std::make_unique<AudioParameterBool>(
+        paramIDs.panLFOInvert, "Pan LFO Invert", false
     ));
 
     return layout;
@@ -221,6 +246,9 @@ auto Parameters::blockUpdate() noexcept -> void {
 
     this->gainLFO.setSyncedRate(gainLFOSyncedTime);
     this->panLFO.setSyncedRate(panLFOSyncedTime);
+
+    this->gainLFO.setPhaseInvert(this->gainLFOInvertParam->get());
+    this->panLFO.setPhaseInvert(this->panLFOInvertParam->get());
 }
 
 auto Parameters::update() noexcept -> void {

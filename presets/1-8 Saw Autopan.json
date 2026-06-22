@@ -1,6 +1,6 @@
 {
   "plugin": "Cute Gain",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "name": "1/8 Saw Autopan",
   "author": "Moebytes",
   "modified": "2025-09-16T15:22:57.573-04:00",
@@ -15,8 +15,10 @@
     "gainLFOType": "saw",
     "gainLFORate": "1/4",
     "gainLFOAmount": "0%",
+    "gainLFOInvert": "Off",
     "panLFOType": "saw",
     "panLFORate": "1/4",
-    "panLFOAmount": "100%"
+    "panLFOAmount": "100%",
+    "panLFOInvert": "Off"
   }
 }

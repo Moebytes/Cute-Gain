@@ -4,7 +4,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-project(CuteGain VERSION 0.0.6)
+project(CuteGain VERSION 1.0.0)
 
 option(WEBVIEW_DEV_MODE "Enable webview dev mode (load from disk)" OFF)
 

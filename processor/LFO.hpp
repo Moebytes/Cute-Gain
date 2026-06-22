@@ -26,6 +26,10 @@ public:
         this->frequency = frequency;
     }
 
+    auto setPhaseInvert(bool phaseInvert) -> void {
+        this->phaseInvert = phaseInvert;
+    }
+
     auto setSyncedRate(float syncedRate) -> void {
         float timeScale = static_cast<float>(this->timeSignature.numerator) / static_cast<float>(this->timeSignature.denominator);
         this->syncedBeats = static_cast<float>(syncedRate) * 4.0f * timeScale;
@@ -76,5 +80,5 @@ private:
     float frequency = 1.0f;
     float syncedBeats = 1.0f;
     float phase = 0.0f;
-    bool phaseInvert = true;
+    bool phaseInvert = false;
 };
