@@ -36,6 +36,9 @@ public:
     AudioParameterFloat* panParam;
     AudioParameterChoice* panningLawParam;
 
+    LFO gainLFO;
+    LFO panLFO;
+    
     AudioParameterChoice* gainLFOTypeParam;
     AudioParameterFloat* gainLFORateParam;
     AudioParameterFloat*  gainLFOAmountParam;
@@ -53,8 +56,6 @@ private:
     LinearSmoothedValue<float> gainLFOAmountSmoother;
     LinearSmoothedValue<float> panLFOAmountSmoother;
 
-    LFO gainLFO;
-    LFO panLFO;
     double sampleRate = 44100.0;
     int blockSize = 512;
     double bpm = 150.0;

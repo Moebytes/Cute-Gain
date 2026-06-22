@@ -24,34 +24,30 @@ public:
 
     auto setHzRate(float frequency) -> void {
         this->frequency = frequency;
-        this->increment = this->frequency / static_cast<float>(this->sampleRate);
     }
 
     auto setSyncedRate(float syncedRate) -> void {
         float timeScale = static_cast<float>(this->timeSignature.numerator) / static_cast<float>(this->timeSignature.denominator);
         this->syncedBeats = static_cast<float>(syncedRate) * 4.0f * timeScale;
-
-        double beatDuration = 60.0 / this->bpm;
-        double syncedSamples = this->syncedBeats * beatDuration * this->sampleRate;
-        this->increment = 1.0f / static_cast<float>(syncedSamples);
     }
 
     auto syncToHost(double bpm, double ppq, const TimeSignature& timeSignature) -> void {
         this->bpm = bpm;
         this->timeSignature = timeSignature;
 
+        this->syncPPQ(ppq);
+    }
+
+    auto syncPPQ(double ppq) -> void {
         if (syncedBeats > 0.0f) {
             double positionInCycle = std::fmod(ppq, syncedBeats);
-            this->phase = static_cast<float>(positionInCycle / syncedBeats);
+            phase = static_cast<float>(positionInCycle / syncedBeats);
         }
     }
 
     auto getSample() -> float {
         float value = renderWaveform(this->phase);
         if (this->phaseInvert) value *= -1.0f;
-
-        this->phase += this->increment;
-        if (this->phase >= 1.0f) this->phase -= 1.0f;
 
         return value;
     }
@@ -79,7 +75,6 @@ private:
 
     float frequency = 1.0f;
     float syncedBeats = 1.0f;
-    float increment = 0.0f;
     float phase = 0.0f;
     bool phaseInvert = true;
 };

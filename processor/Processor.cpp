@@ -49,7 +49,16 @@ auto Processor::processBlock(AudioBuffer<float>& buffer, [[maybe_unused]] MidiBu
     this->parameters.setHostInfo(bpm, ppq, timeSignature);
     this->parameters.blockUpdate();
 
+    double ppqPerSample = (bpm / 60.0) / getSampleRate();
+
     for (int sample = 0; sample < buffer.getNumSamples(); sample++) {
+        if (ppq > 0.0) {
+            double samplePPQ = ppq + sample * ppqPerSample;
+
+            this->parameters.gainLFO.syncPPQ(samplePPQ);
+            this->parameters.panLFO.syncPPQ(samplePPQ);
+        }
+
         this->parameters.update();
 
         float gain = this->parameters.gain * this->parameters.boost;
