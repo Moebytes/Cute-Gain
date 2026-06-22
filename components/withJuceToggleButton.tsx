@@ -3,7 +3,6 @@ import * as JUCE from "juce-framework-frontend-mirror"
 
 interface JUCEToggleProperties {
     name: string
-    parameterIndex: number
 }
 
 export interface WithJUCEToggleButtonProps {
@@ -26,7 +25,6 @@ const withJuceToggleButton = <Props extends object & WithParameter>(
     const JuceToggleButton: React.FunctionComponent<Props> = (props) => {
         const {parameterID} = props
         const toggleState = JUCE.getToggleState(parameterID)!
-        console.log(toggleState)
         const [properties, setProperties] = useState(toggleState.properties)
         const [value, setValue] = useState(toggleState.getValue())
 
