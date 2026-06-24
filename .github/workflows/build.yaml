@@ -129,6 +129,44 @@ jobs:
             \( -name "*.vst3" -o -name "*.component" -o -name "*.app" \) \
             -exec codesign --verify --deep --strict --verbose {} \;
 
+      - name: Notarize macOS binaries
+        if: runner.os == 'macOS'
+        run: |
+          mkdir -p ~/.private_keys
+
+          cat > ~/.private_keys/AuthKey_${{secrets.APPLE_API_KEY_ID}}.p8 <<EOF
+          ${{secrets.APPLE_API_PRIVATE_KE }}
+          EOF
+
+          RELEASE_DIR="build/${{env.PLUGIN_NAME}}_artefacts/Release"
+
+          mkdir notarize
+
+          cp -R "$RELEASE_DIR"/*.app notarize/ 2>/dev/null || true
+          cp -R "$RELEASE_DIR"/*.vst3 notarize/ 2>/dev/null || true
+          cp -R "$RELEASE_DIR"/*.component notarize/ 2>/dev/null || true
+
+          ditto -c -k --keepParent notarize notarize.zip
+
+          xcrun notarytool submit \
+            notarize.zip \
+            --key ~/.private_keys/AuthKey_${{secrets.APPLE_API_KEY_ID}}.p8 \
+            --key-id "${{secrets.APPLE_API_KEY_ID}}" \
+            --issuer "${{secrets.APPLE_API_ISSUER_ID}}" \
+            --wait
+
+          find "$RELEASE_DIR" \
+            \( -name "*.app" -o -name "*.vst3" -o -name "*.component" \) \
+            -print0 | while IFS= read -r -d '' item; do
+
+            echo "Stapling $item"
+            xcrun stapler staple "$item"
+          done
+
+          find "$RELEASE_DIR" \
+            \( -name "*.app" -o -name "*.vst3" -o -name "*.component" \) \
+            -exec spctl -a -vv {} \;
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
