@@ -53,7 +53,7 @@ const Knob: React.FunctionComponent<Props & WithJUCESliderProps> = ({label, para
 
     return (
         <div className="knob-container" style={{...style}}>
-            <KnobHeadlessLabel className="knob-label" id={labelID} style={{color}}>
+            <KnobHeadlessLabel className="knob-label" id={labelID}>
                 {label}
             </KnobHeadlessLabel>
             <KnobHeadless
@@ -78,7 +78,7 @@ const Knob: React.FunctionComponent<Props & WithJUCESliderProps> = ({label, para
                     </div>
                 </div>
             </KnobHeadless>
-            <KnobHeadlessOutput className="knob-value" htmlFor={knobID}>
+            <KnobHeadlessOutput className="knob-value" htmlFor={knobID} style={{color}}>
                 {displayFunction(value)}
             </KnobHeadlessOutput>
             <MappingOptions parameterID={mapOptionID} color={color} mappingOptions={mappingOptions}/>

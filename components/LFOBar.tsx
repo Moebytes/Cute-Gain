@@ -5,12 +5,12 @@ import withJuceComboBox, {WithJUCEComboBoxProps} from "./withJuceComboBox"
 import withJuceToggleButton, {WithJUCEToggleButtonProps} from "./withJuceToggleButton"
 import MiniKnob from "./MiniKnob"
 import functions from "../structures/Functions"
-import squareWave from "../assets/square-wave.png"
-import sineWave from "../assets/sine-wave.png"
-import sawWave from "../assets/saw-wave.png"
-import triangleWave from "../assets/triangle-wave.png"
-import musicNote from "../assets/music-note.png"
-import flipArrow from "../assets/flip-arrow.png"
+import SquareWaveIcon from "../assets/square-wave.svg"
+import SineWaveIcon from "../assets/sine-wave.svg"
+import SawWaveIcon from "../assets/saw-wave.svg"
+import TriangleWaveIcon from "../assets/triangle-wave.svg"
+import MusicNoteIcon from "../assets/music-note.svg"
+import FlipArrowIcon from "../assets/flip-arrow.svg"
 import "./styles/lfobar.scss"
 
 interface LFOTypeProps {
@@ -29,10 +29,10 @@ const LFOBarType: React.FunctionComponent<LFOTypeProps & WithJUCEComboBoxProps> 
     const filter = functions.calculateFilter(color)
 
     const waves = {
-        square: <img className="wave-icon" src={squareWave} style={{filter}} draggable={false}/>,
-        saw: <img className="wave-icon" src={sawWave} style={{filter}} draggable={false}/>,
-        triangle: <img className="wave-icon" src={triangleWave} style={{filter}} draggable={false}/>,
-        sine: <img className="wave-icon" src={sineWave} style={{filter}} draggable={false}/>
+        square: <SquareWaveIcon className="wave-icon" style={{filter}}/>,
+        saw: <SawWaveIcon className="wave-icon" style={{filter}}/>,
+        triangle: <TriangleWaveIcon className="wave-icon" style={{filter}}/>,
+        sine: <SineWaveIcon className="wave-icon" style={{filter}}/>
     }
 
     const wavesJSX = () => {
@@ -148,7 +148,7 @@ const LFOBarRate: React.FunctionComponent<LFORateProps & WithJUCESliderProps> = 
             <span className="lfobar-rate-part" onMouseDown={() => (dragPart.current = "denominator")}>
                 {denominator}
             </span>
-            <img className="lfobar-rate-icon" src={musicNote} style={{filter}} draggable={false}/>
+            <MusicNoteIcon className="lfobar-rate-icon" style={{filter}}/>
         </div>
     )
 }
@@ -164,7 +164,7 @@ const LFOBarInvert: React.FunctionComponent<LFOInvertProps & WithJUCEToggleButto
     const filter = value ? onFilter : functions.calculateFilter(color)
 
     return (
-        <img className="lfobar-arrow-icon" src={flipArrow} style={{filter}} draggable={false} onClick={() => onChange(!value)}/>
+        <FlipArrowIcon className="lfobar-arrow-icon" style={{filter}} onClick={() => onChange(!value)}/>
     )
 }
 

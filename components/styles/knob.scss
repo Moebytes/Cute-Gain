@@ -10,7 +10,7 @@
     width: 4.3rem;
     height: 4.3rem;
     border-radius: 50%;
-    border: 0.12rem solid var(--border);
+    border: 0.12rem solid var(--mainColor);
 }
   
 .knob-rotator {
@@ -26,11 +26,12 @@
     top: 0.25rem;
     height: 50%;
     left: 50%;
-    background-color: var(--border);
+    background-color: var(--textColor);
     transform: translateX(-50%);
 }
 
 .knob-label {
+    color: var(--textColor);
     font-family: MaruMinya, sans-serif;
     font-weight: bold;
     letter-spacing: 0.12rem;
@@ -39,7 +40,6 @@
 }
 
 .knob-value {
-    color: var(--text);
     font-family: MaruMinya, sans-serif;
     font-weight: bold;
     font-size: 1.56rem;

@@ -9,14 +9,14 @@
 }
 
 .preset-title {
-    color: var(--text);
+    color: var(--textColor);
     font-family: Nagino, sans-serif;
     font-weight: bold;
     font-size: 1.5rem;
 }
 
 .preset-name {
-    color: var(--pink);
+    color: var(--mainColor);
     font-family: Nagino, sans-serif;
     margin-top: 0.2rem;
     font-size: 1.6rem;
@@ -47,9 +47,9 @@
 $arrowSize: 2.8rem;
 
 .preset-left-arrow {
-    @include preset-arrow(var(--pink), $arrowSize);
+    @include preset-arrow(var(--mainColor), $arrowSize);
 }
 
 .preset-right-arrow {
-    @include preset-arrow(var(--pink), $arrowSize);
+    @include preset-arrow(var(--mainColor), $arrowSize);
 }

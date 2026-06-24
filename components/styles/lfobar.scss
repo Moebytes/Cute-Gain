@@ -22,7 +22,7 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 0.3rem;
-    border: 1px solid var(--pink);
+    border: 1px solid var(--mainColor);
     border-radius: 0.5rem;
     padding: 0.1rem 0.5rem;
 }
@@ -46,7 +46,7 @@
 }
 
 .lfobar-rate-part {
-    color: var(--text);
+    color: var(--textColor);
     font-family: MaruMinya, sans-serif;
     font-weight: bold;
     font-size: 1.25rem;
@@ -61,7 +61,7 @@
 }
 
 .lfobar-rate-slash {
-    color: var(--text);
+    color: var(--textColor);
     font-family: MaruMinya, sans-serif;
     font-weight: bold;
     font-size: 1.25rem;
@@ -70,7 +70,7 @@
 }
 
 .lfobar-rate-text {
-    color: var(--text);
+    color: var(--textColor);
     font-family: MaruMinya, sans-serif;
     font-weight: bold;
     letter-spacing: 0.12rem;

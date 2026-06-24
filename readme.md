@@ -1,6 +1,6 @@
 # Cute Gain
 
-Cute Gain is a VST/AU plugin for gain control, panning, and some LFO modulation.
+Cute Gain is a VST/AU plugin for gain control and panning.
 
 <img src="assets/readme.png" height="600">
 
@@ -14,11 +14,11 @@ Cute Gain is a VST/AU plugin for gain control, panning, and some LFO modulation.
 - Gain LFO Waveform - pick from square, sawtooth, triangle, and sine shapes for the gain LFO. 
 - Gain LFO Rate - the speed of the gain LFO in bpm synced times.
 - Gain LFO Amount - the amount of the gain LFO effect applied.
+- Gain LFO Invert - inverts the phase of the gain LFO.
 - Pan LFO Waveform - pick from square, sawtooth, triangle, and sine shapes for the panning LFO. 
 - Pan LFO Rate - the speed of the panning LFO in bpm synced times.
 - Pan LFO Amount - the amount of the panning LFO effect applied.
-
-That should be it!
+- Pan LFO Invert - inverts the phase of the pan LFO.
 
 ### Design
 
@@ -27,13 +27,6 @@ Our design is available here: https://www.figma.com/design/B2ZkSdjkJbhSAynBWiNes
 ### Installation
 
 Download from the [releases](https://github.com/Moebytes/Cute-Gain/releases) tab and rescan the plugins in your DAW.
-
-### MacOS
-
-On MacOS you need to remove the unsigned app check.
-```
-xattr -d com.apple.quarantine "/Library/Audio/Plug-Ins/VST3/Cute Gain.vst3"
-```
 
 ### Building
 

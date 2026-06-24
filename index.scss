@@ -14,18 +14,15 @@
 }
 
 :root {
-    --background: #160e16;
-    --border: black;
-    --text: white;
-    --pink: #ff8fdf;
-    --blue: #8bc5ff;
-    --purple: #a683ff;
+    --background: #FFBEE6;
+    --textColor: #000000;
+    --mainColor: #FF4EA7;
 }
 
-.light {
-    --background: #ffd7fb;
-    --text: black;
-    --border: white;
+.dark {
+    --background: #220E1A;
+    --textColor: #FFFFFF;
+    --mainColor: #FF4EA7;
 }
 
 html, body {
@@ -81,17 +78,13 @@ body {
 }
 
 .title-text {
-    color: var(--text);
+    color: var(--mainColor);
     font-family: "BestTen-CRT", sans-serif;
     font-weight: bold;
     letter-spacing: 0.12rem;
     font-size: 2.8rem;
     margin-top: 0.6rem;
     margin-bottom: 0.3rem;
-}
-
-.title-highlight {
-    color: var(--pink);
 }
 
 .theme-icon {
