@@ -267,16 +267,18 @@ auto PresetManager::loadPresetFromFile(std::function<void()> onComplete) -> void
 }
 
 auto PresetManager::savePresetToFile() -> void {
-    auto* infoDialog = new AlertWindow("Save Preset", "Preset Information:", AlertWindow::NoIcon);
+    this->presetDialog = new AlertWindow("Save Preset", "Preset Information:", AlertWindow::NoIcon);
+    this->presetDialog->setLookAndFeel(&this->presetDialogTheme);
 
     auto defaultName = this->currentPresetName;
     if (defaultName == "Default") defaultName.clear();
     auto defaultAuthor = Settings::getSettingKey("saveAuthor", "").toString();
 
-    infoDialog->addTextEditor("name", defaultName, "Name:");
-    infoDialog->addTextEditor("author", defaultAuthor, "Author:");
-    infoDialog->addButton("OK", 1, KeyPress(KeyPress::returnKey));
-    infoDialog->addButton("Cancel", 0, KeyPress(KeyPress::escapeKey));
+    this->presetDialog->addTextEditor("name", defaultName, "Name:");
+    this->presetDialog->addTextEditor("author", defaultAuthor, "Author:");
+    
+    this->presetDialog->addButton("Cancel", 0, KeyPress(KeyPress::escapeKey));
+    this->presetDialog->addButton("OK", 1, KeyPress(KeyPress::returnKey));
 
     auto saveCallback = [this](String name, String author) {
         auto cleanName = Functions::cleanFilename(name);
@@ -302,17 +304,20 @@ auto PresetManager::savePresetToFile() -> void {
         );
     };
 
-    auto nameCallback = ModalCallbackFunction::create([infoDialog, saveCallback](int result) {
+    auto nameCallback = ModalCallbackFunction::create([this, saveCallback](int result) {
         if (result == 1) {
-            auto name = infoDialog->getTextEditor("name")->getText();
-            auto author = infoDialog->getTextEditor("author")->getText();
+            auto name = this->presetDialog->getTextEditor("name")->getText();
+            auto author = this->presetDialog->getTextEditor("author")->getText();
 
             saveCallback(name, author);
         }
-        delete infoDialog;
+
+        this->presetDialog->setLookAndFeel(nullptr);
+        delete this->presetDialog;
+        this->presetDialog = nullptr;
     });
 
-    infoDialog->enterModalState(true, nameCallback, true);
+    this->presetDialog->enterModalState(true, nameCallback, true);
 }
 
 auto PresetManager::loadFactoryPresets() -> void {

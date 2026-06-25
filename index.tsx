@@ -23,7 +23,11 @@ type ThemeContextType = {theme: string; setTheme: React.Dispatch<React.SetStateA
 export const ThemeContext = React.createContext<ThemeContextType>({theme: "", setTheme: () => null})
 
 const App: React.FunctionComponent = () => {
-    const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark")
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || "light")
+    
+    useEffect(() => {
+        window.__JUCE__.backend.emitEvent("themeChange", {theme})
+    }, [])
 
     useEffect(() => {
         const colorList = theme === "light" ? lightColorList : darkColorList
@@ -31,6 +35,7 @@ const App: React.FunctionComponent = () => {
             document.documentElement.style.setProperty(key, color)
         }
         localStorage.setItem("theme", theme)
+        window.__JUCE__.backend.emitEvent("themeChange", {theme})
     }, [theme])
 
     const toggleTheme = () => {

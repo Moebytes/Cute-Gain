@@ -1,5 +1,6 @@
 #pragma once
 #include <JuceHeader.h>
+#include "PresetDialogTheme.hpp"
 
 class PresetManager {
 public:
@@ -33,6 +34,9 @@ public:
     std::vector<String> userPresetNames;
     int presetIndex = 0;
     String presetFolder = "none";
+
+    PresetDialogTheme presetDialogTheme;
+    AlertWindow* presetDialog = nullptr;
 
 private:
     AudioProcessorValueTreeState& tree;

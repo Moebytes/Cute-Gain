@@ -16,6 +16,7 @@ public:
     auto getWebviewFileBytes(const String& resourceStr) -> std::vector<std::byte>;
 
     auto handleEvent(const String& name, const var& payload) -> void override;
+    auto handleThemeChange(const String& theme) -> void;
         
 private:
     Processor& processor;

@@ -69,6 +69,12 @@ auto Editor::webviewOptions() -> WebBrowserComponent::Options {
     })
     .withNativeFunction("currentPresetName", [this]([[maybe_unused]] auto args, auto completion){ 
         return completion(this->processor.presetManager.currentPresetName);
+    })
+    .withEventListener("themeChange", [this](auto obj) {
+        if (auto* data = obj.getDynamicObject()) {
+            auto theme = data->getProperty("theme").toString();
+            this->handleThemeChange(theme);
+        }
     });
 }
 
@@ -112,6 +118,19 @@ auto Editor::getResource(const String& url) -> std::optional<WebBrowserComponent
     return std::nullopt;
 }
 
+auto Editor::handleThemeChange(const String& theme) -> void {
+    this->processor.presetManager.presetDialogTheme.setTheme(theme == "dark");
+
+    if (this->processor.presetManager.presetDialog != nullptr) {
+        this->processor.presetManager.presetDialog->sendLookAndFeelChange();
+
+        this->processor.presetManager.presetDialog->getTextEditor("name")
+            ->applyColourToAllText(theme == "dark" ? Colours::white : Colours::black);
+
+        this->processor.presetManager.presetDialog->getTextEditor("author")
+            ->applyColourToAllText(theme == "dark" ? Colours::white : Colours::black);
+    }
+}
 
 auto Editor::handleEvent(const String& name, const var& payload) -> void {
     if (name == "presetChanged") {
