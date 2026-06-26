@@ -24,9 +24,11 @@ Cute Gain is a VST/AU plugin for gain control and panning.
 
 Our design is available here: https://www.figma.com/design/B2ZkSdjkJbhSAynBWiNesK/Cute-Gain
 
-### Installation
+### Purchase
 
-Download from the [releases](https://github.com/Moebytes/Cute-Gain/releases) tab and rescan the plugins in your DAW.
+<a href="https://moebytes.gumroad.com/l/cute-gain" target="_blank">
+  <img src="assets/gumroad.svg" style="height:60px;"/>
+</a>
 
 ### See Also
 
