@@ -28,13 +28,7 @@ Our design is available here: https://www.figma.com/design/B2ZkSdjkJbhSAynBWiNes
 
 Download from the [releases](https://github.com/Moebytes/Cute-Gain/releases) tab and rescan the plugins in your DAW.
 
-### Building
+### See Also
 
-Release build - `npm install` and `npm run build`. 
-
-Debug build - I run the project with the VSCode debugger and use `npm start` to start the frontend 
-server. You must install the AudioPluginHost from JUCE and put it in your applications folder. 
-
-### Credits
-
-- [JUCE](https://juce.com/)
+- [Cute Pitch](https://github.com/Moebytes/Cute-Pitch)
+- [Cute Crush](https://github.com/Moebytes/Cute-Crush)

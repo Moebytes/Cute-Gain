@@ -17,14 +17,15 @@ auto PresetManager::openPresetMenu([[maybe_unused]] const Array<var>& args,
             {1, "Init Preset"},
             {2, "Load Preset"},
             {3, "Save Preset"},
-            {4, "Add User Folder"}
+            {4, "Randomize Preset"},
+            {5, "Add User Folder"}
         };
 
         auto rawUserFolder = Settings::getSettingKey("userFolder", "").toString();
         std::string userFolder = "";
         if (!rawUserFolder.isEmpty()) {
             userFolder = File{rawUserFolder}.getFileName().toStdString();
-            items.insert(std::make_pair(5, "Remove User Folder"));
+            items.insert(std::make_pair(6, "Remove User Folder"));
         }
 
         int factoryID = static_cast<int>(items.size()) + 1;
@@ -43,6 +44,13 @@ auto PresetManager::openPresetMenu([[maybe_unused]] const Array<var>& args,
             if (action == "Init Preset") {
                 this->initPreset();
                 this->currentPresetName = "Default";
+                this->presetFolder = "none";
+                this->presetIndex = 0;
+                EventEmitter::instance().emitEvent("presetChanged", this->currentPresetName);
+                completion(this->currentPresetName);
+            } else if (action == "Randomize Preset") {
+                this->randomizePreset();
+                this->currentPresetName = "Random";
                 this->presetFolder = "none";
                 this->presetIndex = 0;
                 EventEmitter::instance().emitEvent("presetChanged", this->currentPresetName);
@@ -458,5 +466,24 @@ auto PresetManager::initPreset() -> void {
     for (const auto& id : ParameterIDs::getStringKeys()) {
         auto* param = this->tree.getParameter(id);
         param->setValueNotifyingHost(param->getDefaultValue());
+    }
+}
+
+auto PresetManager::randomizePreset() -> void {
+    Random random;
+
+    for (const auto& id : ParameterIDs::getStringKeys()) {
+        auto* param = this->tree.getParameter(id);
+
+        if (auto* choiceParam = dynamic_cast<AudioParameterChoice*>(param)) {
+            int index = random.nextInt(choiceParam->choices.size());
+            float normalized = choiceParam->convertTo0to1(static_cast<float>(index));
+            choiceParam->setValueNotifyingHost(normalized);
+
+        } else if (auto* boolParam = dynamic_cast<juce::AudioParameterBool*>(param)) {
+            boolParam->setValueNotifyingHost(random.nextBool() ? 1.0f : 0.0f);
+        } else {
+            param->setValueNotifyingHost(random.nextFloat());
+        }
     }
 }

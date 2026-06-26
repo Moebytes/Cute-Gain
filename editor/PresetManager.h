@@ -17,6 +17,7 @@ public:
     auto savePreset(const String& name = "", const String& author = "") -> String;
     auto loadPreset(const String& jsonStr) -> String;
     auto initPreset() -> void;
+    auto randomizePreset() -> void;
         
     auto openPresetMenu(const Array<var>& args, 
         WebBrowserComponent::NativeFunctionCompletion completion) -> void;
