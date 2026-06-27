@@ -34,3 +34,4 @@ Our design is available here: https://www.figma.com/design/B2ZkSdjkJbhSAynBWiNes
 
 - [Cute Pitch](https://github.com/Moebytes/Cute-Pitch)
 - [Cute Crush](https://github.com/Moebytes/Cute-Crush)
+- [Cute Filter](https://github.com/Moebytes/Cute-Filter)
